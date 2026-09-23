@@ -11,7 +11,7 @@ function Cell({ v }: { v: string | boolean }) {
 }
 
 export default function Pricing() {
-  const [cat, setCat] = useState<PricingCategory>("Perpetuals");
+  const [cat, setCat] = useState<PricingCategory>(pricingCategories[0]);
   const base = categoryBasePrice[cat];
 
   return (
@@ -19,7 +19,7 @@ export default function Pricing() {
       id="pricing"
       eyebrow="Pricing"
       title="Simple pricing, billed per data plan"
-      subtitle="Pick the market type you need and the plan that fits your team. Monthly prices shown, billed yearly."
+      subtitle="Pick the data you need and the plan that fits your team. Monthly prices shown, billed yearly."
     >
       <div className="flex justify-center">
         <div className="inline-flex flex-wrap justify-center gap-1 rounded-lg bg-slate-100 p-1">

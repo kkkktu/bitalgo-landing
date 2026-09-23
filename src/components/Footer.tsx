@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-6 lg:px-8">
         <div className="md:col-span-2">
           <Logo light />
-          <p className="mt-4 max-w-xs text-sm">Tick-level historical market data for crypto exchanges.</p>
+          <p className="mt-4 max-w-xs text-sm">Tick-level historical market data for Binance USDⓈ-M futures.</p>
         </div>
         {footerColumns.map((c) => (
           <div key={c.title}>

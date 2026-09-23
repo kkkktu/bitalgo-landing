@@ -1,11 +1,11 @@
-import { apiSamples } from "@/lib/data";
+import { DOCS_URL, apiSamples } from "@/lib/data";
 import CodeTabs from "./CodeTabs";
 
 const points = [
-  "Replay historical feeds exactly as they arrived, message by message",
-  "Normalized trades, book changes and derived bars across exchanges",
-  "Local caching so repeated backtests run at disk speed",
-  "Self-hosted server option with HTTP and WebSocket endpoints",
+  "v1 replays raw websocket frames, one minute per request, merged in time order",
+  "v2 serves five-minute statistics over a range, queried like Binance klines",
+  "Page through history with the X-BitGW-Next-Start response header",
+  "Tardis error codes and bodies, so existing error handling keeps working",
 ];
 
 export default function DeveloperApi() {
@@ -17,7 +17,8 @@ export default function DeveloperApi() {
           <p className="text-sm font-semibold uppercase tracking-wider text-blue-600">Developer API</p>
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Built for the people who write the code</h2>
           <p className="mt-4 text-lg text-slate-600">
-            Open source clients for Python and Node.js get you from API key to backtest in a few lines.
+            The existing tardis-client (Python) and tardis-dev (Node.js) libraries work as they are. Or call the HTTP API
+            directly with your key in the Authorization header.
           </p>
           <ul className="mt-6 space-y-3">
             {points.map((p) => (
@@ -27,7 +28,7 @@ export default function DeveloperApi() {
               </li>
             ))}
           </ul>
-          <a href="#" className="mt-8 inline-block text-sm font-semibold text-blue-600 hover:text-blue-700">
+          <a href={DOCS_URL} target="_blank" rel="noreferrer" className="mt-8 inline-block text-sm font-semibold text-blue-600 hover:text-blue-700">
             Read the documentation →
           </a>
         </div>

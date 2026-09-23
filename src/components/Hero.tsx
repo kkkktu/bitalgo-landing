@@ -1,4 +1,4 @@
-import { codeSamples } from "@/lib/data";
+import { DOCS_URL, SYMBOL_COUNT, codeSamples } from "@/lib/data";
 import CodeTabs from "./CodeTabs";
 
 export default function Hero() {
@@ -12,11 +12,11 @@ export default function Hero() {
             Tick-level historical market data
           </span>
           <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Every tick of the <span className="text-blue-600">crypto markets</span>, ready for research
+            Every tick of <span className="text-blue-600">Binance futures</span>, ready for research
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
-            BitALgo captures full-depth order books, trades, options chains, funding and liquidations from the
-            largest crypto exchanges, then hands them to you as clean CSV files or a replay API.
+            BitALgo captures aggregated trades, order book diffs and snapshots for all {SYMBOL_COUNT} Binance USDⓈ-M
+            futures, then serves them as raw tick data or ready-made five-minute CSV statistics.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
@@ -26,13 +26,17 @@ export default function Hero() {
               See pricing
             </a>
             <a
-              href="#"
+              href={DOCS_URL}
+              target="_blank"
+              rel="noreferrer"
               className="rounded-md border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 hover:border-blue-600 hover:text-blue-600"
             >
-              Get started free →
+              Try the API docs →
             </a>
           </div>
-          <p className="mt-4 text-sm text-slate-500">Free sample data for the first day of every month. No card needed.</p>
+          <p className="mt-4 text-sm text-slate-500">
+            Already on Tardis? Change the endpoint and API key, nothing else.
+          </p>
         </div>
         <CodeTabs samples={codeSamples} />
       </div>

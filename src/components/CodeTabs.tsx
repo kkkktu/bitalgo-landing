@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 
-type Lang = "python" | "node";
+type Lang = "python" | "node" | "curl";
 
 const TOKEN_RE =
-  /(\/\/.*|#.*)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|\b(import|from|const|let|await|async|for|of|in|def|return|function|require|print)\b|\b(\d[\d_.]*)\b/g;
+  /(\/\/.*|#.*)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|\b(import|from|const|let|await|async|for|of|in|def|return|function|require|print|while|if|curl)\b|\b(\d[\d_.]*)\b/g;
 
 function highlight(code: string) {
   const out: React.ReactNode[] = [];
@@ -32,12 +32,11 @@ function highlight(code: string) {
   return out;
 }
 
-export default function CodeTabs({ samples }: { samples: Record<Lang, string> }) {
-  const [lang, setLang] = useState<Lang>("python");
-  const tabs: { id: Lang; label: string }[] = [
-    { id: "python", label: "Python" },
-    { id: "node", label: "Node.js" },
-  ];
+const LABELS: Record<Lang, string> = { python: "Python", node: "Node.js", curl: "cURL" };
+
+export default function CodeTabs({ samples }: { samples: Partial<Record<Lang, string>> }) {
+  const tabs = (Object.keys(LABELS) as Lang[]).filter((id) => samples[id] !== undefined).map((id) => ({ id, label: LABELS[id] }));
+  const [lang, setLang] = useState<Lang>(tabs[0]?.id ?? "python");
 
   return (
     <div className="overflow-hidden rounded-xl bg-slate-900 shadow-2xl ring-1 ring-slate-900/10">
@@ -60,7 +59,7 @@ export default function CodeTabs({ samples }: { samples: Record<Lang, string> })
         ))}
       </div>
       <pre className="overflow-x-auto bg-slate-800/50 p-5 text-[13px] leading-6 text-slate-200">
-        <code className="font-mono">{highlight(samples[lang])}</code>
+        <code className="font-mono">{highlight(samples[lang] ?? "")}</code>
       </pre>
     </div>
   );

@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "BitALgo – Tick-level crypto market data",
-  description: "Historical order books, trades, options, funding and liquidations from leading crypto exchanges.",
+  description: "Tick-level and five-minute historical market data for Binance USDⓈ-M futures, compatible with Tardis clients.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

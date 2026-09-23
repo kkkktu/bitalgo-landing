@@ -16,7 +16,7 @@ const selectCls =
   "mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-800 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600";
 
 export default function OrderForm() {
-  const [cat, setCat] = useState<PricingCategory>("Perpetuals");
+  const [cat, setCat] = useState<PricingCategory>(pricingCategories[0]);
   const [tier, setTier] = useState(pricingTiers[1].name);
   const [interval, setBilling] = useState("yearly");
   const [agreed, setAgreed] = useState(false);
@@ -49,7 +49,7 @@ export default function OrderForm() {
       >
         <div className="space-y-5 md:col-span-3">
           <label className="block text-sm font-medium text-slate-700">
-            Market type
+            Data
             <select className={selectCls} value={cat} onChange={(e) => setCat(e.target.value as PricingCategory)}>
               {pricingCategories.map((c) => (
                 <option key={c}>{c}</option>

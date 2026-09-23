@@ -1,4 +1,4 @@
-import { exchanges, overviewFeatures } from "@/lib/data";
+import { EXCHANGE_ID, channels, overviewFeatures } from "@/lib/data";
 import Section from "./Section";
 
 const icons: Record<string, React.ReactNode> = {
@@ -12,7 +12,7 @@ export default function Overview() {
     <Section
       eyebrow="Overview"
       title="Institutional-grade data without the institutional hassle"
-      subtitle="One source for historical market microstructure across spot and derivatives venues."
+      subtitle="Historical market microstructure for Binance USDⓈ-M futures, served over plain HTTP."
     >
       <div className="grid gap-6 md:grid-cols-3">
         {overviewFeatures.map((f) => (
@@ -29,21 +29,22 @@ export default function Overview() {
       </div>
 
       <div className="mt-16">
-        <p className="text-center text-sm font-semibold uppercase tracking-wider text-slate-500">Supported exchanges</p>
-        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {exchanges.map((e) => (
-            <div
-              key={e}
-              className="flex h-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-3 text-center text-sm font-semibold text-slate-700 transition hover:border-blue-300 hover:bg-white hover:text-blue-700"
+        <p className="text-center text-sm font-semibold uppercase tracking-wider text-slate-500">
+          Channels on <span className="font-mono normal-case">{EXCHANGE_ID}</span>
+        </p>
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {channels.map((c) => (
+            <a
+              key={c.id}
+              href="#datasets"
+              className="flex flex-col items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-3 py-4 text-center transition hover:border-blue-300 hover:bg-white"
             >
-              {e}
-            </div>
+              <span className="font-mono text-sm font-semibold text-slate-800">{c.id}</span>
+              <span className="mt-1 text-xs text-slate-500">
+                {c.api} · since {c.since.slice(0, 4)}
+              </span>
+            </a>
           ))}
-        </div>
-        <div className="mt-6 text-center">
-          <a href="#" className="text-sm font-semibold text-blue-600 hover:text-blue-700">
-            See all supported exchanges →
-          </a>
         </div>
       </div>
     </Section>
