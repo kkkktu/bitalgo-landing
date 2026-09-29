@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { categoryBasePrice, pricingCategories, pricingTiers, type PricingCategory } from "@/lib/data";
+import { categoryBasePrice, pricingCategories, pricingTiers, roundPrice, type PricingCategory } from "@/lib/data";
 import Section from "./Section";
 
 const intervals = [
@@ -10,7 +10,9 @@ const intervals = [
   { id: "monthly", label: "Monthly", months: 1, discount: 0.2 },
 ];
 
-const steps = ["Choose your data", "Pay securely", "Receive your API key"];
+const minOrder = 50;
+
+const steps =["Choose your data", "Pay securely", "Receive your API key"];
 
 const selectCls =
   "mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-800 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600";
@@ -23,8 +25,8 @@ export default function OrderForm() {
 
   const t = pricingTiers.find((x) => x.name === tier) ?? pricingTiers[1];
   const iv = intervals.find((x) => x.id === interval) ?? intervals[0];
-  const monthly = categoryBasePrice[cat] * t.multiplier * (1 + iv.discount);
-  const total = Math.max(300, Math.round(monthly * iv.months));
+  const monthly = roundPrice(categoryBasePrice[cat] * t.multiplier) * (1 + iv.discount);
+  const total = Math.max(minOrder, roundPrice(monthly * iv.months));
 
   return (
     <Section
@@ -45,7 +47,7 @@ export default function OrderForm() {
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="mx-auto grid max-w-4xl gap-8 rounded-xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-5 md:p-8"
+        className="mx-auto grid max-w-4xl grid-cols-1 gap-8 rounded-xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-5 md:p-8"
       >
         <div className="space-y-5 md:col-span-3">
           <label className="block text-sm font-medium text-slate-700">
@@ -97,7 +99,7 @@ export default function OrderForm() {
             </p>
             <p className="mt-6 text-4xl font-extrabold">${total.toLocaleString()}</p>
             <p className="mt-1 text-sm text-slate-400">per {iv.months === 12 ? "year" : iv.months === 3 ? "quarter" : "month"}, excl. VAT</p>
-            <p className="mt-4 text-xs text-slate-500">Minimum order value is $300.</p>
+            <p className="mt-4 text-xs text-slate-500">Minimum order value is ${minOrder}.</p>
           </div>
           <button
             type="submit"

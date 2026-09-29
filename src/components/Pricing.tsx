@@ -1,7 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { categoryBasePrice, pricingCategories, pricingFeatures, pricingTiers, type PricingCategory } from "@/lib/data";
+import {
+  categoryBasePrice,
+  categoryListPrice,
+  pricingCategories,
+  pricingFeatures,
+  pricingTiers,
+  roundPrice,
+  type PricingCategory,
+} from "@/lib/data";
 import Section from "./Section";
 
 function Cell({ v }: { v: string | boolean }) {
@@ -13,6 +21,7 @@ function Cell({ v }: { v: string | boolean }) {
 export default function Pricing() {
   const [cat, setCat] = useState<PricingCategory>(pricingCategories[0]);
   const base = categoryBasePrice[cat];
+  const list = categoryListPrice[cat];
 
   return (
     <Section
@@ -52,8 +61,14 @@ export default function Pricing() {
               )}
             </div>
             <p className="mt-1 text-sm text-slate-500">{t.tagline}</p>
-            <p className="mt-6">
-              <span className="text-4xl font-extrabold text-slate-900">${Math.round(base * t.multiplier).toLocaleString()}</span>
+            <div className="mt-6 flex items-center gap-2">
+              <span className="text-base text-slate-400 line-through">${roundPrice(list * t.multiplier).toLocaleString()}</span>
+              <span className="rounded-full bg-green-50 px-2 py-0.5 text-xs font-semibold text-green-700">
+                -{Math.round((1 - roundPrice(base * t.multiplier) / roundPrice(list * t.multiplier)) * 100)}%
+              </span>
+            </div>
+            <p>
+              <span className="text-4xl font-extrabold text-slate-900">${roundPrice(base * t.multiplier).toLocaleString()}</span>
               <span className="text-sm text-slate-500"> /month</span>
             </p>
             <ul className="mt-6 flex-1 space-y-3 text-sm">

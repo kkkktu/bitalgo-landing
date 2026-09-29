@@ -225,12 +225,21 @@ export const pricingTiers = [
   { name: "Business", tagline: "For firms redistributing insights", multiplier: 5, highlighted: false },
 ];
 
-// Placeholder prices
+// Solo monthly price (our price) and the crossed-out list price shown next to it.
 export const categoryBasePrice: Record<PricingCategory, number> = {
-  "Tick data (v1)": 300,
-  "5-min stats (v2)": 100,
-  "Full access": 350,
+  "Tick data (v1)": 150,
+  "5-min stats (v2)": 50,
+  "Full access": 175,
 };
+
+export const categoryListPrice: Record<PricingCategory, number> = {
+  "Tick data (v1)": 240,
+  "5-min stats (v2)": 80,
+  "Full access": 280,
+};
+
+// Round to a clean number (nearest $5)
+export const roundPrice = (n: number) => Math.round(n / 5) * 5;
 
 export const pricingFeatures: { label: string; values: (string | boolean)[] }[] = [
   { label: "Tick data replay (v1)", values: [true, true, true, true] },
