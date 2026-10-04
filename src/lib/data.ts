@@ -1,7 +1,7 @@
 export const API_BASE = "https://data.bitalgoresearch.com";
 export const DOCS_URL = `${API_BASE}/docs`;
 export const EXCHANGE_ID = "binance-futures";
-export const SYMBOL_COUNT = 771;
+export const SYMBOL_COUNT = 732; // from /v1/exchanges/binance-futures availableSymbols, 2026-09-30
 
 export const navLinks = [
   { label: "Datasets", href: "#datasets" },

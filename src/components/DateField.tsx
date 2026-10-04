@@ -3,7 +3,7 @@
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 const selectCls =
-  "rounded-md border border-slate-300 bg-white px-2 py-2.5 text-sm text-slate-800 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600";
+  "w-full min-w-0 rounded-md border border-slate-300 bg-white px-2 py-2.5 text-sm text-slate-800 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -34,7 +34,7 @@ export default function DateField({
   return (
     <fieldset>
       <legend className="text-sm font-medium text-slate-700">{label}</legend>
-      <div className="mt-1.5 grid grid-cols-[1fr_1.2fr_1.3fr] gap-2">
+      <div className="mt-1.5 grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,1.3fr)] gap-2">
         <select aria-label={`${label} day`} value={d} onChange={(e) => set(y, m, Number(e.target.value))} className={selectCls}>
           {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((n) => (
             <option key={n} value={n}>

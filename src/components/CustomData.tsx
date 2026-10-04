@@ -249,7 +249,7 @@ curl -sg -D - -H "Authorization: Bearer $KEY" \\
       title="Build exactly the dataset you need"
       subtitle="Pick symbols, channels and a date range. We estimate the size and price instantly and generate the download code for you."
     >
-      <div className="grid gap-8 lg:grid-cols-5">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
         <div className="space-y-8 rounded-xl border border-slate-200 bg-white p-6 shadow-sm lg:col-span-3">
           <div>
             <StepTitle n={1}>Exchange</StepTitle>

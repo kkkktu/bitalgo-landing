@@ -9,6 +9,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Let wide children (code blocks, tables) scroll inside grid cells instead of widening the page */
+.grid > * {
+  min-width: 0;
+}
+
 body {
   background: #ffffff;
   color: #0f172a;

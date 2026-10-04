@@ -11,7 +11,7 @@ const points = [
 export default function DeveloperApi() {
   return (
     <section className="py-20 sm:py-24">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         <CodeTabs samples={apiSamples} />
         <div>
           <p className="text-sm font-semibold uppercase tracking-wider text-blue-600">Developer API</p>
